@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+    <h1>Clients</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse 1</th>
+                <th>Adresse 2</th>
+                <th>Code Postale</th>
+                <th>Ville</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.adr1 }}</td>
+                <td>{{ client.adr2 }}</td>
+                <td>{{ client.codepos }}</td>
+                <td>{{ client.ville }}</td>
+                <td>
+                    <a href="{{ path('app_client_show', {'id': client.id}) }}">voir</a>
+                    <a href="{{ path('app_client_edit', {'id': client.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_client_new') }}" class="btn btn-secondary">Créer un nouveau</a>
+{% endblock %}

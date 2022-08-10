@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sav{% endblock %}
+
+{% block body %}
+    <h1>Sav</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse 1</th>
+                <th>Adresse 2</th>
+                <th>Code Postale</th>
+                <th>Ville</th>
+                <th>Problèmes</th>
+                <th>Date de création</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sav in savs %}
+            <tr>
+                <td>{{ sav.id }}</td>
+                <td>{{ sav.savNom }}</td>
+                <td>{{ sav.savPrenom }}</td>
+                <td>{{ sav.savAdr1 }}</td>
+                <td>{{ sav.savAdr2 }}</td>
+                <td>{{ sav.savCodepos }}</td>
+                <td>{{ sav.savVille }}</td>
+                <td>{{ sav.savProbleme }}</td>
+                <td>{{ sav.dtCrea ? sav.dtCrea|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_sav_show', {'id': sav.id}) }}">voir</a>
+                    <a href="{{ path('app_sav_edit', {'id': sav.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sav_new') }}" class="btn btn-secondary">Créer un nouveau</a>
+{% endblock %}
